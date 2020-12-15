@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { RandomImageInterface } from 'src/app/interfaces';
 
 @Component({
   selector: 'app-random-image-item',
@@ -10,4 +11,8 @@ export class RandomImageItemComponent {
   @Input() searchText: string;
 
   constructor () { }
+
+  setDefaultImage(randomImage: RandomImageInterface) {
+    randomImage.photo = '/assets/not-found.jpg';
+  }
 }
