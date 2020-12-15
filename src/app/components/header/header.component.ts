@@ -9,6 +9,7 @@ import { RandomImageService } from 'src/app/modules/random-image/services/random
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit, OnDestroy{
+  title: string = 'Lorem Ipsum App';
   searchTextChanged = new Subject<string>();
   subscriptions: Subscription[] = [];
   searchText: string;

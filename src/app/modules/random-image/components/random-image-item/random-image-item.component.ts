@@ -7,7 +7,7 @@ import { RandomImageInterface } from 'src/app/interfaces';
   styleUrls: ['./random-image-item.component.scss']
 })
 export class RandomImageItemComponent {
-  @Input() randomImage;
+  @Input() randomImage: RandomImageInterface;
   @Input() searchText: string;
 
   constructor () { }
