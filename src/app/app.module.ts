@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FormsModule } from '@angular/forms';
+import { RandomImageService } from './modules/random-image/services/random-image.service';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,11 @@ import { FormsModule } from '@angular/forms';
     AppRoutingModule,
     FormsModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    RandomImageService
+  ],
+  bootstrap: [
+    AppComponent
+  ]
 })
 export class AppModule { }

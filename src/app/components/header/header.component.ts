@@ -1,18 +1,41 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subject, Subscription } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
+import { RandomImageService } from 'src/app/modules/random-image/services/random-image.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit, OnDestroy{
+  searchTextChanged = new Subject<string>();
+  subscriptions: Subscription[] = [];
   searchText: string;
+  page: number;
   
-  constructor() {
+  constructor(private randomImageService: RandomImageService) {
 
   }
 
+  ngOnInit() {
+    this.subscriptions.push(this.searchTextChanged
+      .pipe(debounceTime(1000))
+     .subscribe(() => this.getRandomImagesByText())
+   );
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.forEach((subscription: Subscription)=>{
+      subscription.unsubscribe();
+    })
+  }
+
   onSearchChange(search: string){
-    // TODO : EXECUTE SEARCH
+    this.searchTextChanged.next(search);
+  }
+
+  private getRandomImagesByText() {
+    this.randomImageService.setRequestParams(this.searchText);
   }
 }
