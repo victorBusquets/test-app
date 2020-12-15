@@ -7,6 +7,7 @@ import { Component, Input } from '@angular/core';
 })
 export class RandomImageItemComponent {
   @Input() randomImage;
+  @Input() searchText: string;
 
   constructor () { }
 }
