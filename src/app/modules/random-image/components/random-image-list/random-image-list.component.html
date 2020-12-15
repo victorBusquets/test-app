@@ -1,0 +1,8 @@
+<div class="random-image-list">
+
+    <div class="container-size row mx-auto py-4">
+        <div class="col-6 col-sm-4 col-md-3 mb-3" *ngFor="let randomImage of randomImages; trackBy: trackByFn">
+            <app-random-image-item class="d-block h-100" [randomImage]="randomImage"></app-random-image-item>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,23 @@
+$header-height: 56px;
+
+.app-container{
+    height: 100%;
+    width: 100%;
+
+    app-header{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: $header-height;
+        border-bottom: solid 1px;
+    }
+
+    main{
+        position: absolute;
+        top: $header-height;
+        left: 0;
+        width: 100%;
+        height: calc(100% - #{$header-height});
+    }
+}

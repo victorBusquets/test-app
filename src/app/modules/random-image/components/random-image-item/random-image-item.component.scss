@@ -1,0 +1,14 @@
+.random-image{
+    cursor: pointer;
+    transition: all .25s;
+    background: #f7f7f7;
+
+    &:hover{
+        background: #ffffff;
+        box-shadow: 6px 6px 6px -2px rgba(0,0,0,0.5);
+        position: relative;
+        top: -3px;
+        left: -3px;
+        border-radius: 0.5rem;
+    }
+}
