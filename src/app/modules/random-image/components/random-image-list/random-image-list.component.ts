@@ -21,7 +21,6 @@ export class RandomImageListComponent implements OnInit {
   throttle: number = 300;
   scrollDistance: number = 1;
   searchText: string;
-  appliedSearchText: string
   requestParams: RequestParamsInterface = INITIAL_REQUEST_PARAMS;
 
   subscriptions: Subscription[] = [];
