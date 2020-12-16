@@ -1,0 +1,19 @@
+{
+    "env": {
+        "host": "http://localhost:4200"
+    },
+    "video": true,
+    "screenshotsFolder": "reports/screenshots",
+    "videosFolder": "reports/videos",
+    "reporter": "mochawesome",
+    "reporterOptions": {
+        "reportDir": "reports",
+        "overwrite": false,
+        "inline": true
+    },
+    "viewportWidth": 1500,
+    "viewportHeight": 750,
+    "chromeWebSecurity": false,
+    "defaultCommandTimeout": 30000,
+    "baseUrl": "http://localhost:4200"
+}

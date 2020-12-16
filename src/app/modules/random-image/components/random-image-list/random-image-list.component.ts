@@ -19,7 +19,7 @@ const INITIAL_REQUEST_PARAMS: RequestParamsInterface = {
 export class RandomImageListComponent implements OnInit {
   randomImages: RandomImageInterface[];
   throttle: number = 300;
-  scrollDistance: number = 1;
+  scrollDistance: number = 3;
   searchText: string;
   requestParams: RequestParamsInterface = INITIAL_REQUEST_PARAMS;
 
