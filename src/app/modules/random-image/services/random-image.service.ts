@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { LOREM_IPSUM_SEED } from 'src/app/constants/lorem-ipsum-seed';
 import { RandomImageInterface } from 'src/app/interfaces';
 import { RequestParamsInterface } from 'src/app/interfaces';
@@ -7,11 +7,14 @@ import { RequestParamsInterface } from 'src/app/interfaces';
 @Injectable()
 export class RandomImageService {
   generatedRandomImages: RandomImageInterface[] = [];
-  loremIpsumSeedWords: string[] = LOREM_IPSUM_SEED.split(' ');
+  currentRequestParams: Observable<RequestParamsInterface>;
+  private loremIpsumSeedWords: string[] = LOREM_IPSUM_SEED.split(' ');
   private requestParams = new BehaviorSubject(null);
-  currentRequestParams = this.requestParams.asObservable();
 
-  constructor() { }
+  constructor() {
+    this.currentRequestParams = this.requestParams.asObservable();
+
+  }
 
   getRandomImages(requestParams: RequestParamsInterface): RandomImageInterface[] {
     const startIndex: number = requestParams.pageSize * (requestParams.page - 1);
@@ -57,7 +60,8 @@ export class RandomImageService {
   }
 
   private generateRandomIpsum() {
-    const startIndex: number = this.randomIntFromInterval(0, this.loremIpsumSeedWords.length);
+    const miniumSeedSize: number = 5;
+    const startIndex: number = this.randomIntFromInterval(0, this.loremIpsumSeedWords.length - miniumSeedSize);
     const endIndex: number = startIndex + this.randomIntFromInterval(5, 10);
 
     return this.loremIpsumSeedWords.slice(startIndex, endIndex).join(' ');

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { takeWhile } from 'rxjs/operators';
 import { RandomImageInterface } from 'src/app/interfaces';
 import { RequestParamsInterface } from 'src/app/interfaces/RequestParams.interface';
 import { RandomImageService } from '../../services/random-image.service';
@@ -20,30 +20,28 @@ export class RandomImageListComponent implements OnInit {
   randomImages: RandomImageInterface[];
   throttle: number = 300;
   scrollDistance: number = 3;
+  scrollWindow: boolean = false;
   searchText: string;
   requestParams: RequestParamsInterface = INITIAL_REQUEST_PARAMS;
+  notResultText: string = 'No existen resultados para la busqueda ';
+  constructor(
+    private randomImageService: RandomImageService
+  ) {
 
-  subscriptions: Subscription[] = [];
-
-  constructor (private randomImageService: RandomImageService) {}
+  }
   
   ngOnInit() {
     this.getRandomImagePage();
 
-    this.subscriptions.push(this.randomImageService.currentRequestParams.subscribe((requestParams: RequestParamsInterface) => {
-      if(requestParams && this.requestParamsHasChanges(requestParams)){
-        this.requestParams = requestParams;
-        this.getRandomImagePage();
-      }
-    }));
+    this.randomImageService.currentRequestParams
+      .pipe(takeWhile((requestParams: RequestParamsInterface) => !!requestParams))
+      .subscribe((requestParams: RequestParamsInterface) => {
+        if(requestParams && this.requestParamsHasChanges(requestParams)){
+          this.requestParams = requestParams;
+          this.getRandomImagePage();
+        }
+      });
   }
-
-  ngOnDestroy() {
-    this.subscriptions.forEach((subscription: Subscription)=>{
-      subscription.unsubscribe();
-    });
-  }
-
   
   getRandomImagePage() {
     if (this.requestParams.hasMoreData) {

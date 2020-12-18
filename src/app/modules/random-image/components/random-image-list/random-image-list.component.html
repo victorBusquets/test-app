@@ -1,6 +1,6 @@
 <div class="random-image-list"
     infinite-scroll
-    [scrollWindow]="false"
+    [scrollWindow]="scrollWindow"
     [infiniteScrollDistance]="scrollDistance"
     [infiniteScrollThrottle]="throttle"
     (scrolled)="onScrollDown()">
@@ -18,5 +18,8 @@
 </div>
 
 <ng-template #notResults>
-    <p class="text-center mt-5 no-result-message">No existen resultados para la busqueda <span class="remark">'{{requestParams.search}}'</span></p>
+    <p class="text-center mt-5 no-result-message">
+        <span>{{notResultText}}</span>
+        <span class="remark">'{{requestParams.search}}'</span>
+    </p>
 </ng-template >
