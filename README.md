@@ -20,7 +20,7 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 
 ## Running end-to-end tests
 
-Run `npm run cypress` to execute the end-to-end tests via [Cypress](https://www.cypress.io/) and generate report with [Mochawesome](https://github.com/adamgruber/mochawesome#readme).
+Run `npx cypress run node ./cypress/scripts/test.js` to execute the end-to-end tests via [Cypress](https://www.cypress.io/) and generate report with [Mochawesome](https://github.com/adamgruber/mochawesome#readme).
 
 ## Further help
 
